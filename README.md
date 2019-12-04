@@ -12,3 +12,5 @@
 * События, манипуляции с DOM
 * Валидация, DOMParser
 * [Деплой](https://surge.sh)
+
+Готовый [проект](http://1ocke-reader.surge.sh).
