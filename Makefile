@@ -4,5 +4,8 @@ install:
 lint:
 	npx eslint .
 
-webpack:
+build:
 	npm run-script build
+
+server:
+	npm run-script start-server

@@ -4,14 +4,17 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
   output: {
-    filename: 'bundle.js',
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
   mode: process.env.NODE_ENV || 'development',
+  devServer: {
+    stats: 'errors-only',
+  },
   module: {
     rules: [
       {
-        test: /\.(scss)$/,
+        test: /\.(css)$/,
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
@@ -21,7 +24,6 @@ module.exports = {
               plugins: () => [autoprefixer],
             },
           },
-          { loader: 'sass-loader' },
         ],
       },
     ],

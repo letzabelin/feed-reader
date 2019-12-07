@@ -1,5 +1,4 @@
-import init from './init';
-import 'bootstrap';
-import './scss/app.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import app from './app';
 
-init();
+app();
