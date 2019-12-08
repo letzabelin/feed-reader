@@ -9,7 +9,7 @@
     "news feed"
   ],
   "scripts": {
-    "build": "webpack",
+    "build": "webpack && surge --domain 1ocke-reader.surge.sh dist",
     "start-server": "webpack-dev-server"
   },
   "repository": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/1ocke/frontend-project-lvl3#readme",
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
+    "@babel/polyfill": "^7.7.0",
     "axios": "^0.19.0",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
@@ -32,24 +32,24 @@
     "validator": "^12.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
     "autoprefixer": "^9.7.3",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.5",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
     "css-loader": "^3.2.1",
     "eslint": "^5.12.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-import": "^2.18.2",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.13.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.1",
-    "webpack": "^4.20.0",
-    "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.10"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   }
 }

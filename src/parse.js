@@ -1,4 +1,4 @@
-export default (data) => {
+export default ({ data }) => {
   const parser = new DOMParser();
   const xmlDocument = parser.parseFromString(data, 'text/xml');
   const newsItems = xmlDocument.querySelectorAll('item');

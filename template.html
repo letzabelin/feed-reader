@@ -13,21 +13,30 @@
         <hr class="my-4">
   
         <form id="rss-form" class="form">
-          <div class="form-group">
-            <input id="rss-input" type="url" name="url" class="form-control" id="example" aria-describedby="rss-link" placeholder="Введите ссылку">
+          <div class="input-group mb-3">
+            <input id="rss-input" type="email" class="form-control" placeholder="https://ru.hexlet.io/lessons.rss" aria-label="Введите URL..." aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button id="rss-button" class="btn btn-outline-secondary" type="button" disabled>Добавить</button>
+            </div>
           </div>
-          <button id="rss-button" type="submit" class="btn btn-primary" disabled>Добавить</button>
+          <small id="hint" style="margin: -10px 0 0 2px;" class="form-text text-muted">Введите URL</small>
         </form>
       </div>
     </div>
 
     <div class="container">
-      
-    </div>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <h3>Каналы:</h3>
+          <ul id="rss-feeds" class="list-group">
+          </ul>
+        </div>
 
-    <div class="container">
-      <div id="accordion">
-       
+        <div class="col-12 col-lg-6">
+          <h3>Статьи:</h3>
+          <ul id="rss-articles" class="list-group">
+          </ul>
+        </div>
       </div>
     </div>
   </body>

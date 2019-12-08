@@ -1,14 +1,17 @@
 import axios from 'axios';
 import parse from './parse';
 
-export default (link) => {
-  console.log(link);
+export default (state, link) => {
   const proxy = 'cors-anywhere.herokuapp.com';
+  const newState = state;
 
   axios.get(`https://${proxy}/${link}`)
     .then((response) => {
-      const xml = response.data;
-      return parse(xml);
+      parse(response);
+      newState.button.requestState = 'finished';
     })
-    .then(console.log);
+    .catch((err) => {
+      newState.button.requestState = 'failed';
+      throw new Error(err);
+    });
 };
