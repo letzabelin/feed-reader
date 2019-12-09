@@ -22,14 +22,21 @@ const renderNewsFeed = ({ title, description, link }) => {
   feedsBlock.prepend(anchor);
 };
 
-const renderNewsArticle = ({ title, link }) => {
+const renderNewsArticle = ({ title, link, description }) => {
   if (titlesOfArticles.includes(title)) return;
   titlesOfArticles.push(title);
 
-  const anchor = document.createElement('a');
-  anchor.classList.add('list-group-item', 'list-group-item-action', 'flex-column', 'align-items-start');
-  anchor.setAttribute('href', link);
-  anchor.textContent = title;
+  const templateFeedItem = `
+  <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+    <a href=${link} class="text-dark">${title}</a>
+    <button type="button" class="btn btn-secondary ml-4" data-toggle="modal" data-target="#infoModal" data-whatever='${description}'>
+      Информация
+    </button>
+  </li>
+  `;
+
+  const anchor = document.createElement('div');
+  anchor.innerHTML = templateFeedItem;
 
   articlesBlock.prepend(anchor);
 };

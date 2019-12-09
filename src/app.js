@@ -1,4 +1,5 @@
-import 'bootstrap/js/dist/collapse';
+import 'bootstrap/js/dist/modal';
+import $ from 'jquery';
 import isURL from 'validator/lib/isURL';
 import watch from './watch';
 import addFeed from './makeRequest';
@@ -45,4 +46,11 @@ export default () => {
 
   input.addEventListener('input', handleInput);
   button.addEventListener('click', handleButton);
+
+  $('#infoModal').on('show.bs.modal', function showModal(event) {
+    const infoButton = $(event.relatedTarget);
+    const recipient = infoButton.data('whatever');
+    const modal = $(this);
+    modal.find('#modalDescription').text(recipient);
+  });
 };
