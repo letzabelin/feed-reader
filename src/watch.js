@@ -1,4 +1,5 @@
 import { watch } from 'melanke-watchjs';
+import render from './render';
 
 const selectMessage = (requestState) => {
   const messages = {
@@ -75,4 +76,8 @@ export default (state) => {
         break;
     }
   });
+
+  watch(state, 'feedsList', () => render('feed', state.feedsList));
+
+  watch(state, 'articlesList', () => render('article', state.articlesList));
 };

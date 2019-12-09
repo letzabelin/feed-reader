@@ -1,8 +1,7 @@
 import 'bootstrap/js/dist/collapse';
 import isURL from 'validator/lib/isURL';
 import watch from './watch';
-import request from './request';
-// import render from './render';
+import addFeed from './makeRequest';
 
 
 export default () => {
@@ -13,7 +12,9 @@ export default () => {
     button: {
       requestState: 'wait',
     },
-    feedList: ['lorem-rss.herokuapp.com'],
+    urlList: ['lorem-rss.herokuapp.com'],
+    feedsList: [],
+    articlesList: [],
   };
 
   watch(state);
@@ -23,7 +24,7 @@ export default () => {
 
   const handleInput = (evt) => {
     const { value } = evt.target;
-    const isValidURL = isURL(value) && !state.feedList.includes(value);
+    const isValidURL = isURL(value) && !state.urlList.includes(value);
     state.button.requestState = 'wait';
 
     if (value === '') {
@@ -38,7 +39,7 @@ export default () => {
   const handleButton = (evt) => {
     evt.preventDefault();
 
-    request(state, input.value);
+    addFeed(state, input.value);
     state.button.requestState = 'requested';
   };
 

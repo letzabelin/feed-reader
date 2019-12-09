@@ -7,7 +7,11 @@ export default (state, link) => {
 
   axios.get(`https://${proxy}/${link}`)
     .then((response) => {
-      parse(response);
+      const newsFeed = parse(response);
+      const { articles } = newsFeed;
+      state.feedsList.push(newsFeed);
+      state.urlList.push(link);
+      state.articlesList.push(...articles);
       newState.button.requestState = 'finished';
     })
     .catch((err) => {
