@@ -2,7 +2,7 @@ import 'bootstrap/js/dist/modal';
 import $ from 'jquery';
 import isURL from 'validator/lib/isURL';
 import watch from './watch';
-import addFeed from './makeRequest';
+import { updateArticles, addFeed } from './makeRequest';
 
 
 export default () => {
@@ -19,6 +19,7 @@ export default () => {
   };
 
   watch(state);
+  updateArticles(state);
 
   const input = document.querySelector('#rss-input');
   const button = document.querySelector('#rss-button');

@@ -1,11 +1,31 @@
 import axios from 'axios';
 import parse from './parse';
 
-export default (state, link) => {
-  const proxy = 'cors-anywhere.herokuapp.com';
+export const updateArticles = (state) => {
+  const corsProxy = 'cors-anywhere.herokuapp.com';
+  const updateTime = 5000;
+  const { articlesList, urlList } = state;
+
+  const promises = urlList.map(url => axios.get(`https://${corsProxy}/${url}`));
+  const isNewArticles = article => !articlesList.includes(article);
+
+  Promise.all(promises)
+    .then((responseList) => {
+      responseList.forEach((response) => {
+        const { articles } = parse(response);
+        const newArticles = articles.filter(isNewArticles);
+
+        state.articlesList.push(...newArticles);
+      });
+    })
+    .finally(() => setTimeout(() => updateArticles(state), updateTime));
+};
+
+export const addFeed = (state, link) => {
+  const corsProxy = 'cors-anywhere.herokuapp.com';
   const newState = state;
 
-  axios.get(`https://${proxy}/${link}`)
+  axios.get(`https://${corsProxy}/${link}`)
     .then((response) => {
       const newsFeed = parse(response);
       const { articles } = newsFeed;
