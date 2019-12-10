@@ -22,7 +22,7 @@ export default () => {
   updateArticles(state);
 
   const input = document.querySelector('#rss-input');
-  const button = document.querySelector('#rss-button');
+  const addFeedButton = document.querySelector('#rss-button');
 
   const handleInput = (evt) => {
     const { value } = evt.target;
@@ -46,13 +46,13 @@ export default () => {
   };
 
   input.addEventListener('input', handleInput);
-  button.addEventListener('click', handleButton);
+  addFeedButton.addEventListener('click', handleButton);
 
   $('#info-modal').on('show.bs.modal', function showModal(event) {
     const infoButton = $(event.relatedTarget);
-    const recipient = infoButton.data('whatever');
-    const modal = $(this);
-    modal.find('#modal-description').text(recipient);
+    const articleDescription = infoButton.data('whatever');
+    const modalWindow = $(this);
+    modalWindow.find('#modal-description').text(articleDescription);
   });
 
   $(window).on('load', () => {

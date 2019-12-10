@@ -3,34 +3,34 @@ import parse from './parse';
 
 export const updateArticles = (state) => {
   const corsProxy = 'cors-anywhere.herokuapp.com';
-  const updateTime = 5000;
+  const timeToUpdate = 5000;
   const { articlesList, urlList } = state;
 
-  const promises = urlList.map(url => axios.get(`https://${corsProxy}/${url}`));
-  const isNewArticles = article => !articlesList.includes(article);
+  const promisesResponseList = urlList.map(url => axios.get(`https://${corsProxy}/${url}`));
+  const isNewArticle = article => !articlesList.includes(article);
 
-  Promise.all(promises)
-    .then((responseList) => {
-      responseList.forEach((response) => {
+  Promise.all(promisesResponseList)
+    .then((responsesList) => {
+      responsesList.forEach((response) => {
         const { articles } = parse(response);
-        const newArticles = articles.filter(isNewArticles);
+        const articlesToAdd = articles.filter(isNewArticle);
 
-        state.articlesList.push(...newArticles);
+        state.articlesList.push(...articlesToAdd);
       });
     })
-    .finally(() => setTimeout(() => updateArticles(state), updateTime));
+    .finally(() => setTimeout(() => updateArticles(state), timeToUpdate));
 };
 
-export const addFeed = (state, link) => {
+export const addFeed = (state, linkFromUser) => {
   const corsProxy = 'cors-anywhere.herokuapp.com';
   const newState = state;
 
-  axios.get(`https://${corsProxy}/${link}`)
+  axios.get(`https://${corsProxy}/${linkFromUser}`)
     .then((response) => {
-      const newsFeed = parse(response);
-      const { articles } = newsFeed;
-      state.feedsList.push(newsFeed);
-      state.urlList.push(link);
+      const feed = parse(response);
+      const { articles } = feed;
+      state.feedsList.push(feed);
+      state.urlList.push(linkFromUser);
       state.articlesList.push(...articles);
       newState.button.requestState = 'finished';
     })

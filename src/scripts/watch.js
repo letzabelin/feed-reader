@@ -5,7 +5,7 @@ const selectMessage = (requestState) => {
   const messages = {
     wait: 'Введите URL',
     requesting: 'Выполняется запрос...',
-    finished: 'Канал успешно добавлен)',
+    finished: 'Канал успешно добавлен!',
     failed: 'Произошла ошибка, попробуйте снова.',
   };
 
@@ -14,7 +14,7 @@ const selectMessage = (requestState) => {
 
 export default (state) => {
   const input = document.querySelector('#rss-input');
-  const button = document.querySelector('#rss-button');
+  const addFeedButton = document.querySelector('#rss-button');
   const hintMessage = document.querySelector('#hint-message');
 
   watch(state, 'input', () => {
@@ -23,16 +23,16 @@ export default (state) => {
         input.value = '';
         input.classList.remove('is-invalid');
         input.classList.remove('is-valid');
-        button.setAttribute('disabled', 'disabled');
+        addFeedButton.setAttribute('disabled', 'disabled');
         break;
       case 'invalid':
         input.classList.remove('is-valid');
         input.classList.add('is-invalid');
-        button.setAttribute('disabled', 'disabled');
+        addFeedButton.setAttribute('disabled', 'disabled');
         break;
       case 'valid':
         input.classList.remove('is-invalid');
-        button.removeAttribute('disabled');
+        addFeedButton.removeAttribute('disabled');
         input.classList.add('is-valid');
         break;
       default:
@@ -54,7 +54,7 @@ export default (state) => {
 
         input.classList.remove('is-valid');
         input.setAttribute('disabled', 'disabled');
-        button.setAttribute('disabled', 'disabled');
+        addFeedButton.setAttribute('disabled', 'disabled');
         break;
       case 'finished':
         hintMessage.textContent = selectMessage('finished');
@@ -63,7 +63,7 @@ export default (state) => {
 
         input.value = '';
         input.removeAttribute('disabled');
-        button.setAttribute('disabled', 'disabled');
+        addFeedButton.setAttribute('disabled', 'disabled');
         break;
       case 'failed':
         hintMessage.textContent = selectMessage('failed');
