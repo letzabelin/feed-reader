@@ -12,7 +12,8 @@ export const updateArticles = (state) => {
   Promise.all(promisesResponseList)
     .then((responsesList) => {
       responsesList.forEach((response) => {
-        const { articles } = parse(response);
+        const feed = parse(response);
+        const { articles } = feed;
         const articlesToAdd = articles.filter(isNewArticle);
 
         state.articlesList.push(...articlesToAdd);
