@@ -4,7 +4,7 @@ import render from './render';
 const selectMessage = (requestState) => {
   const messages = {
     wait: 'Введите URL',
-    requested: 'Выполняется запрос...',
+    requesting: 'Выполняется запрос...',
     finished: 'Канал успешно добавлен)',
     failed: 'Произошла ошибка, попробуйте снова.',
   };
@@ -15,7 +15,7 @@ const selectMessage = (requestState) => {
 export default (state) => {
   const input = document.querySelector('#rss-input');
   const button = document.querySelector('#rss-button');
-  const hintMessage = document.querySelector('#hint');
+  const hintMessage = document.querySelector('#hint-message');
 
   watch(state, 'input', () => {
     switch (state.input.inputField) {
@@ -47,8 +47,8 @@ export default (state) => {
         hintMessage.classList.remove('text-success', 'text-danger');
         hintMessage.classList.add('text-muted');
         break;
-      case 'requested':
-        hintMessage.textContent = selectMessage('requested');
+      case 'requesting':
+        hintMessage.textContent = selectMessage('requesting');
         hintMessage.classList.remove('text-muted');
         hintMessage.classList.add('text-warning');
 

@@ -42,17 +42,17 @@ export default () => {
     evt.preventDefault();
 
     addFeed(state, input.value);
-    state.button.requestState = 'requested';
+    state.button.requestState = 'requesting';
   };
 
   input.addEventListener('input', handleInput);
   button.addEventListener('click', handleButton);
 
-  $('#infoModal').on('show.bs.modal', function showModal(event) {
+  $('#info-modal').on('show.bs.modal', function showModal(event) {
     const infoButton = $(event.relatedTarget);
     const recipient = infoButton.data('whatever');
     const modal = $(this);
-    modal.find('#modalDescription').text(recipient);
+    modal.find('#modal-description').text(recipient);
   });
 
   $(window).on('load', () => {

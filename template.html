@@ -15,6 +15,7 @@
       <div class="container">
         <h1 class="display-4">RSS Feed Reader</h1>
         <p class="lead">RSS-лента новостей с автоматическим обновлением.</p>
+
         <hr class="my-4">
   
         <form id="rss-form" class="form">
@@ -24,8 +25,9 @@
               <button id="rss-button" class="btn btn-outline-secondary" type="button" disabled>Добавить</button>
             </div>
           </div>
-          <small id="hint" style="margin: -10px 0 0 2px;" class="form-text text-muted">Введите URL</small>
+          <small id="hint-message" style="margin: -10px 0 0 2px;" class="form-text text-muted">Введите URL</small>
         </form>
+
       </div>
     </div>
 
@@ -45,17 +47,17 @@
       </div>
     </div>
 
-    <div id="infoModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div id="info-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 id="modalTitle" class="modal-title">Описание статьи:</h5>
+            <h5 class="modal-title">Описание статьи:</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p id="modalDescription"></p>
+            <p id="modal-description"></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>

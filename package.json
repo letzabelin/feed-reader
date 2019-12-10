@@ -1,12 +1,12 @@
 {
-  "name": "rss-feed-hexlet",
-  "version": "1.0.0",
+  "name": "rss-reader-hexlet",
+  "version": "1.1.0",
   "description": "RSS feed with automatic updates",
   "keywords": [
-    "rss feed",
+    "rss feed reader",
+    "rss reader",
     "rss",
-    "hexlet",
-    "news feed"
+    "hexlet"
   ],
   "scripts": {
     "build": "webpack && surge --domain 1ocke-reader.surge.sh dist",

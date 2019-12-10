@@ -7,5 +7,5 @@ lint:
 build:
 	npm run-script build
 
-server:
+start:
 	npm run-script start-server
