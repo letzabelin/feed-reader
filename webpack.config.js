@@ -3,6 +3,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
+  entry: './src/scripts/index.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -14,10 +15,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(css)$/,
+        test: /\.(s?css)$/,
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
+          { loader: 'sass-loader' },
           {
             loader: 'postcss-loader',
             options: {

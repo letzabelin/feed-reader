@@ -13,7 +13,7 @@ export default () => {
     button: {
       requestState: 'wait',
     },
-    urlList: ['lorem-rss.herokuapp.com'],
+    urlList: [],
     feedsList: [],
     articlesList: [],
   };
@@ -52,5 +52,9 @@ export default () => {
     const recipient = infoButton.data('whatever');
     const modal = $(this);
     modal.find('#modalDescription').text(recipient);
+  });
+
+  $(window).on('load', () => {
+    $('.preloader').delay(1000).fadeOut('slow');
   });
 };
