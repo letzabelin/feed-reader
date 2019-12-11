@@ -28,11 +28,16 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.png$/,
+        loader: 'file-loader',
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'template.html',
+      favicon: './favicon.ico',
     }),
   ],
 };
