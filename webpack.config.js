@@ -28,10 +28,6 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.png$/,
-        loader: 'file-loader',
-      },
     ],
   },
   plugins: [
