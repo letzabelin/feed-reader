@@ -3,8 +3,8 @@ import render from './render';
 
 const selectMessage = (requestState) => {
   const messages = {
-    wait: 'Введите URL',
-    requesting: 'Выполняется запрос...',
+    filling: 'Введите URL',
+    sending: 'Выполняется запрос...',
     finished: 'Канал успешно добавлен!',
     failed: 'Произошла ошибка, попробуйте снова.',
   };
@@ -17,9 +17,9 @@ export default (state) => {
   const addFeedButton = document.querySelector('#rss-button');
   const hintMessage = document.querySelector('#hint-message');
 
-  watch(state, 'input', () => {
-    switch (state.input.inputField) {
-      case 'empty':
+  watch(state, 'addFeedProcess', () => {
+    switch (state.addFeedProcess.validationState) {
+      case 'filling':
         input.value = '';
         input.classList.remove('is-invalid');
         input.classList.remove('is-valid');
@@ -40,15 +40,15 @@ export default (state) => {
     }
   });
 
-  watch(state, 'button', () => {
-    switch (state.button.requestState) {
-      case 'wait':
-        hintMessage.textContent = selectMessage('wait');
+  watch(state, 'addFeedProcess', () => {
+    switch (state.addFeedProcess.requestState) {
+      case 'filling':
+        hintMessage.textContent = selectMessage('filling');
         hintMessage.classList.remove('text-success', 'text-danger');
         hintMessage.classList.add('text-muted');
         break;
-      case 'requesting':
-        hintMessage.textContent = selectMessage('requesting');
+      case 'sending':
+        hintMessage.textContent = selectMessage('sending');
         hintMessage.classList.remove('text-muted');
         hintMessage.classList.add('text-warning');
 
@@ -77,7 +77,7 @@ export default (state) => {
     }
   });
 
-  watch(state, 'feedsList', () => render('feed', state.feedsList));
+  watch(state, 'addFeedProcess', () => render('feed', state.addFeedProcess.rssFeeds));
 
-  watch(state, 'articlesList', () => render('article', state.articlesList));
+  watch(state, 'addFeedProcess', () => render('article', state.addFeedProcess.rssArticles));
 };

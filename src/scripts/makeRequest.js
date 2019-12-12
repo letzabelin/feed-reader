@@ -4,10 +4,10 @@ import parse from './parse';
 export const updateArticles = (state) => {
   const corsProxy = 'cors-anywhere.herokuapp.com';
   const timeToUpdate = 5000;
-  const { articlesList, urlList } = state;
+  const { rssArticles, urls } = state.addFeedProcess;
 
-  const promisesResponseList = urlList.map(url => axios.get(`https://${corsProxy}/${url}`));
-  const isNewArticle = article => !articlesList.includes(article);
+  const promisesResponseList = urls.map(url => axios.get(`https://${corsProxy}/${url}`));
+  const isNewArticle = article => !rssArticles.includes(article);
 
   Promise.all(promisesResponseList)
     .then((responsesList) => {
@@ -16,7 +16,7 @@ export const updateArticles = (state) => {
         const { articles } = feed;
         const articlesToAdd = articles.filter(isNewArticle);
 
-        state.articlesList.push(...articlesToAdd);
+        state.addFeedProcess.rssArticles.push(...articlesToAdd);
       });
     })
     .finally(() => setTimeout(() => updateArticles(state), timeToUpdate));
@@ -30,13 +30,13 @@ export const addFeed = (state, linkFromUser) => {
     .then((response) => {
       const feed = parse(response);
       const { articles } = feed;
-      state.feedsList.push(feed);
-      state.urlList.push(linkFromUser);
-      state.articlesList.push(...articles);
-      newState.button.requestState = 'finished';
+      newState.addFeedProcess.rssFeeds.push(feed);
+      newState.addFeedProcess.urls.push(linkFromUser);
+      newState.addFeedProcess.rssArticles.push(...articles);
+      newState.addFeedProcess.requestState = 'finished';
     })
     .catch((err) => {
-      newState.button.requestState = 'failed';
+      newState.addFeedProcess.requestState = 'failed';
       throw new Error(err);
     });
 };

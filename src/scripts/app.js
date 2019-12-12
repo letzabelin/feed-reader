@@ -7,46 +7,47 @@ import { updateArticles, addFeed } from './makeRequest';
 
 export default () => {
   const state = {
-    input: {
-      inputField: 'empty',
+    addFeedProcess: {
+      validationState: 'filling',
+      requestState: 'filling',
+      urls: [],
+      rssFeeds: [],
+      rssArticles: [],
     },
-    button: {
-      requestState: 'wait',
-    },
-    urlList: [],
-    feedsList: [],
-    articlesList: [],
   };
 
   watch(state);
   updateArticles(state);
 
-  const input = document.querySelector('#rss-input');
-  const addFeedButton = document.querySelector('#rss-button');
+  const inputForURL = document.querySelector('#rss-input');
+  const addFeedForm = document.querySelector('#rss-form');
 
   const handleInput = (evt) => {
     const { value } = evt.target;
-    const isValidURL = isURL(value) && !state.urlList.includes(value);
-    state.button.requestState = 'wait';
+    const isValidURL = isURL(value) && !state.addFeedProcess.urls.includes(value);
+    state.addFeedProcess.requestState = 'filling';
 
     if (value === '') {
-      state.input.inputField = 'empty';
+      state.addFeedProcess.validationState = 'filling';
     } else if (isValidURL) {
-      state.input.inputField = 'valid';
+      state.addFeedProcess.validationState = 'valid';
     } else {
-      state.input.inputField = 'invalid';
+      state.addFeedProcess.validationState = 'invalid';
     }
   };
 
-  const handleButton = (evt) => {
+  const handleForm = (evt) => {
     evt.preventDefault();
 
-    addFeed(state, input.value);
-    state.button.requestState = 'requesting';
+    const formData = new FormData(evt.target);
+    const url = formData.get('url');
+
+    addFeed(state, url);
+    state.addFeedProcess.requestState = 'sending';
   };
 
-  input.addEventListener('input', handleInput);
-  addFeedButton.addEventListener('click', handleButton);
+  inputForURL.addEventListener('input', handleInput);
+  addFeedForm.addEventListener('submit', handleForm);
 
   $('#info-modal').on('show.bs.modal', function showModal(event) {
     const infoButton = $(event.relatedTarget);
@@ -56,6 +57,7 @@ export default () => {
   });
 
   $(window).on('load', () => {
-    $('.preloader').delay(1000).fadeOut('slow');
+    const preloader = $('.preloader');
+    preloader.delay(1000).fadeOut('slow');
   });
 };

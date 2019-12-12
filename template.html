@@ -9,7 +9,11 @@
   </head>
   <body>
     <div class="preloader">
-      <div class="pulse"></div>
+      <div class="fixed-top h-100 w-100 d-flex justify-content-center align-items-center" style="background-color: #e9ecef;">
+        <div class="spinner-grow p-4">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
     </div>
 
     <div class="jumbotron jumbotron-fluid">
@@ -21,9 +25,9 @@
   
         <form id="rss-form" class="form">
           <div class="input-group mb-3">
-            <input id="rss-input" type="email" class="form-control" placeholder="https://ru.hexlet.io/lessons.rss" aria-label="Введите URL..." aria-describedby="basic-addon2">
+            <input id="rss-input" type="url" name="url" class="form-control" placeholder="https://ru.hexlet.io/lessons.rss" aria-label="Введите URL..." aria-describedby="basic-addon2">
             <div class="input-group-append">
-              <button id="rss-button" class="btn btn-outline-secondary" type="button" disabled>Добавить</button>
+              <button id="rss-button" class="btn btn-outline-secondary" type="submit" disabled>Добавить</button>
             </div>
           </div>
           <small id="hint-message" style="margin: -10px 0 0 2px;" class="form-text text-muted">Введите URL</small>
