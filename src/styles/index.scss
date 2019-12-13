@@ -1,21 +1,7 @@
+$theme-colors: (
+  "danger": #EE1722,
+  "warning": #D97E00,
+  "success": #228007
+);
+
 @import '~bootstrap/scss/bootstrap';
-
-html {
-  background-color: #ffffff;
-}
-
-body {
-  opacity: 1;
-}
-
-.text-danger {
-  color: #EE1722 !important;
-}
-
-.text-warning {
-  color: #D97E00 !important;
-}
-
-.text-success {
-  color: #228007 !important;
-}
