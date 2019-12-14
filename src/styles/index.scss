@@ -5,3 +5,7 @@ $theme-colors: (
 );
 
 @import '~bootstrap/scss/bootstrap';
+
+body {
+  opacity: 1;
+}

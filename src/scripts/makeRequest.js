@@ -26,6 +26,8 @@ export const addFeed = (state, linkFromUser) => {
   const corsProxy = 'cors-anywhere.herokuapp.com';
   const newState = state;
 
+  newState.addFeedProcess.requestState = 'sending';
+
   axios.get(`https://${corsProxy}/${linkFromUser}`)
     .then((response) => {
       const feed = parse(response);

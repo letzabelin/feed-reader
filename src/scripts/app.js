@@ -43,7 +43,6 @@ export default () => {
     const url = formData.get('url');
 
     addFeed(state, url);
-    state.addFeedProcess.requestState = 'sending';
   };
 
   inputForURL.addEventListener('input', handleInput);
