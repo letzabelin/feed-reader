@@ -11,9 +11,9 @@ export default () => {
       validationState: 'filling',
       requestState: 'filling',
       urls: [],
-      rssFeeds: [],
-      rssArticles: [],
     },
+    rssFeeds: [],
+    rssArticles: [],
   };
 
   watch(state);

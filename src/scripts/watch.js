@@ -36,7 +36,7 @@ export default (state) => {
         input.classList.add('is-valid');
         break;
       default:
-        break;
+        throw new Error('Validation state is not defined');
     }
   });
 
@@ -73,11 +73,11 @@ export default (state) => {
         input.removeAttribute('disabled');
         break;
       default:
-        break;
+        throw new Error('Request state is not defined!');
     }
   });
 
-  watch(state, 'addFeedProcess', () => render('feed', state.addFeedProcess.rssFeeds));
+  watch(state, 'rssFeeds', () => render('feed', state.rssFeeds));
 
-  watch(state, 'addFeedProcess', () => render('article', state.addFeedProcess.rssArticles));
+  watch(state, 'rssArticles', () => render('article', state.rssArticles));
 };

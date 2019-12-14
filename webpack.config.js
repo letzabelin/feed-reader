@@ -18,15 +18,20 @@ module.exports = {
       {
         test: /\.(s?css)$/,
         use: [
-          'style-loader',
+          {
+            loader: 'style-loader',
+            options: {
+              insert: 'body',
+            },
+          },
           'css-loader',
-          'sass-loader',
           {
             loader: 'postcss-loader',
             options: {
               plugins: () => [autoprefixer],
             },
           },
+          'sass-loader',
         ],
       },
     ],
