@@ -11,8 +11,8 @@ export default () => {
     addFeedProcess: {
       validationState: 'filling',
       requestState: 'filling',
-      urls: [],
     },
+    urls: [],
     rssFeeds: [],
     rssArticles: [],
   };
@@ -26,7 +26,7 @@ export default () => {
 
   const handleInput = (evt) => {
     const { value } = evt.target;
-    const isValidURL = isURL(value) && !state.addFeedProcess.urls.includes(value);
+    const isValidURL = isURL(value) && !state.urls.includes(value);
     state.addFeedProcess.requestState = 'filling';
 
     if (value === '') {

@@ -4,7 +4,7 @@ import parse from './parse';
 export const updateArticles = (state) => {
   const corsProxy = 'cors-anywhere.herokuapp.com';
   const timeToUpdate = 5000;
-  const { addFeedProcess: { urls }, rssArticles } = state;
+  const { urls, rssArticles } = state;
 
   const promisesResponseList = urls.map(url => axios.get(`https://${corsProxy}/${url}`));
   const isNewArticle = article => !rssArticles.includes(article);
@@ -33,7 +33,7 @@ export const addFeed = (state, linkFromUser) => {
       const feed = parse(response);
       const { articles } = feed;
       newState.rssFeeds.push(feed);
-      newState.addFeedProcess.urls.push(linkFromUser);
+      newState.urls.push(linkFromUser);
       newState.rssArticles.push(...articles);
       newState.addFeedProcess.requestState = 'finished';
     })
