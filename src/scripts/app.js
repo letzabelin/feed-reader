@@ -3,6 +3,7 @@ import $ from 'jquery';
 import isURL from 'validator/lib/isURL';
 import watch from './watch';
 import { updateArticles, addFeed } from './makeRequest';
+import { mainConfig, localize } from './localize';
 
 
 export default () => {
@@ -18,6 +19,7 @@ export default () => {
 
   watch(state);
   updateArticles(state);
+  localize(mainConfig);
 
   const inputForURL = document.querySelector('#rss-input');
   const addFeedForm = document.querySelector('#rss-form');

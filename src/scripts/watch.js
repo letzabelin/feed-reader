@@ -1,21 +1,30 @@
 import { watch } from 'melanke-watchjs';
 import render from './render';
-
-const selectMessage = (requestState) => {
-  const messages = {
-    filling: 'Введите URL',
-    sending: 'Выполняется запрос...',
-    finished: 'Канал успешно добавлен!',
-    failed: 'Произошла ошибка, попробуйте снова.',
-  };
-
-  return messages[requestState];
-};
+import { localize } from './localize';
 
 export default (state) => {
   const input = document.querySelector('#rss-input');
-  const addFeedButton = document.querySelector('#rss-button');
+  const addFeedButton = document.querySelector('#button-add');
   const hintMessage = document.querySelector('#hint-message');
+
+  const selectMessage = (requestState) => {
+    const messages = {
+      filling: (t) => {
+        hintMessage.textContent = t('form.hint-message.filling');
+      },
+      sending: (t) => {
+        hintMessage.textContent = t('form.hint-message.sending');
+      },
+      finished: (t) => {
+        hintMessage.textContent = t('form.hint-message.finished');
+      },
+      failed: (t) => {
+        hintMessage.textContent = t('form.hint-message.failed');
+      },
+    };
+
+    return localize(messages[requestState]);
+  };
 
   watch(state, 'addFeedProcess', () => {
     switch (state.addFeedProcess.validationState) {
@@ -43,12 +52,12 @@ export default (state) => {
   watch(state, 'addFeedProcess', () => {
     switch (state.addFeedProcess.requestState) {
       case 'filling':
-        hintMessage.textContent = selectMessage('filling');
+        selectMessage('filling');
         hintMessage.classList.remove('text-success', 'text-danger');
         hintMessage.classList.add('text-muted');
         break;
       case 'sending':
-        hintMessage.textContent = selectMessage('sending');
+        selectMessage('sending');
         hintMessage.classList.remove('text-muted');
         hintMessage.classList.add('text-warning');
 
@@ -57,7 +66,7 @@ export default (state) => {
         addFeedButton.setAttribute('disabled', 'disabled');
         break;
       case 'finished':
-        hintMessage.textContent = selectMessage('finished');
+        selectMessage('finished');
         hintMessage.classList.remove('text-warning');
         hintMessage.classList.add('text-success');
 
@@ -66,7 +75,7 @@ export default (state) => {
         addFeedButton.setAttribute('disabled', 'disabled');
         break;
       case 'failed':
-        hintMessage.textContent = selectMessage('failed');
+        selectMessage('failed');
         hintMessage.classList.remove('text-warning');
         hintMessage.classList.add('text-danger');
 

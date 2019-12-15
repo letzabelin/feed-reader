@@ -19,7 +19,7 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">RSS Feed Reader</h1>
-        <p class="lead">RSS-лента новостей с автоматическим обновлением.</p>
+        <p id="rss-description" class="lead">RSS-лента новостей с автоматическим обновлением.</p>
 
         <hr class="my-4">
   
@@ -27,7 +27,7 @@
           <div class="input-group mb-3">
             <input id="rss-input" type="url" name="url" class="form-control" placeholder="https://ru.hexlet.io/lessons.rss" aria-label="Введите URL..." aria-describedby="basic-addon2">
             <div class="input-group-append">
-              <button id="rss-button" class="btn btn-outline-secondary" type="submit" disabled>Добавить</button>
+              <button id="button-add" class="btn btn-outline-secondary" type="submit" disabled>Добавить</button>
             </div>
           </div>
           <small id="hint-message" style="margin: -10px 0 0 2px;" class="form-text text-muted">Введите URL</small>
@@ -39,13 +39,13 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-6">
-          <h3>Каналы:</h3>
+          <h3 id="feeds-title">Каналы:</h3>
           <div id="rss-feeds" class="list-group">
           </div>
         </div>
 
         <div class="col-12 col-lg-6">
-          <h3>Статьи:</h3>
+          <h3 id="articles-title">Статьи:</h3>
           <div id="rss-articles" class="list-group">
           </div>
         </div>
@@ -65,7 +65,7 @@
             <p id="modal-description"></p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            <button id="button-close" type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
           </div>
         </div>
       </div>

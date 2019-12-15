@@ -29,7 +29,7 @@ const renderArticle = ({ title, link, description }) => {
   const templateArticleItem = `
   <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
     <a href=${link} class="text-dark">${title}</a>
-    <button type="button" class="btn btn-secondary ml-4" data-toggle="modal" data-target="#info-modal" data-whatever='${description}'>
+    <button type="button" class="btn btn-secondary ml-4 button-info" data-toggle="modal" data-target="#info-modal" data-whatever='${description}'>
       Информация
     </button>
   </li>
