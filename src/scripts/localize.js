@@ -16,7 +16,6 @@ export const localize = (cb) => {
   i18next
     .use(Languagedetector)
     .init({
-      lng: 'ru',
       fallbackLng: 'en',
       debug: true,
       resources,

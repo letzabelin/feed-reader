@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 
@@ -16,14 +17,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(s?css)$/,
+        test: /\.(scss|sass)$/,
         use: [
-          {
-            loader: 'style-loader',
-            options: {
-              insert: 'body',
-            },
-          },
+          MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -37,6 +33,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+    }),
     new HtmlWebpackPlugin({
       template: 'template.html',
     }),
