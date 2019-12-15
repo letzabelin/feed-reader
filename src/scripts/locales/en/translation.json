@@ -1,5 +1,4 @@
 {
-  "hello": "heyEN",
   "description": "RSS feed with automatic updates",
   "form": {
     "hint-message": {
@@ -13,8 +12,11 @@
     }
   },
   "button": {
-    "info": "Information",
-    "close": "Close"
+    "info": "Information"
+  },
+  "modal": {
+    "button-close": "Close",
+    "modal-title": "Article's description"
   },
   "feeds-block": "Feeds:",
   "articles-block": "Articles:"

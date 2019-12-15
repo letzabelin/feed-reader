@@ -1,5 +1,7 @@
+import { localize } from './localize';
+
 const feedsBlock = document.querySelector('#rss-feeds');
-const articlesBlock = document.querySelector('#rss-articles');
+const articlesBlock = document.querySelector(' #rss-articles');
 const titlesOfFeeds = [];
 const titlesOfArticles = [];
 
@@ -30,7 +32,15 @@ const renderArticle = ({ title, link, description }) => {
   <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
     <a href=${link} class="text-dark">${title}</a>
     <button type="button" class="btn btn-secondary ml-4 button-info" data-toggle="modal" data-target="#info-modal" data-whatever='${description}'>
-      Информация
+      ${localize((t) => {
+    const buttonsInfo = document.querySelectorAll('.button-info');
+
+    buttonsInfo.forEach((btn) => {
+      const buttonInfo = btn;
+
+      buttonInfo.textContent = t('button.info');
+    });
+  })}
     </button>
   </li>
   `;

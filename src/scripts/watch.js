@@ -88,15 +88,5 @@ export default (state) => {
 
   watch(state, 'rssFeeds', () => render('feed', state.rssFeeds));
 
-  watch(state, 'rssArticles', () => {
-    render('article', state.rssArticles);
-    const buttonsInfo = document.querySelectorAll('.button-info');
-
-    buttonsInfo.forEach((btn) => {
-      localize((t) => {
-        const buttonInfo = btn;
-        buttonInfo.textContent = t('button.info');
-      });
-    });
-  });
+  watch(state, 'rssArticles', () => render('article', state.rssArticles));
 };

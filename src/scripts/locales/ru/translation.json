@@ -1,5 +1,4 @@
 {
-  "hello": "hey",
   "description": "RSS-лента новостей с автоматическим обновлением.",
   "form": {
     "hint-message": {
@@ -13,8 +12,11 @@
     }
   },
   "button": {
-    "info": "Информация",
-    "close": "Закрыть"
+    "info": "Информация"
+  },
+  "modal": {
+    "button-close": "Закрыть",
+    "modal-title": "Описание статьи:"
   },
   "feeds-block": "Каналы:",
   "articles-block": "Статьи:"
