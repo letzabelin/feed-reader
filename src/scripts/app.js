@@ -53,13 +53,13 @@ export default () => {
 
   $('#info-modal').on('show.bs.modal', function showModal(event) {
     const infoButton = $(event.relatedTarget);
-    const articleDescription = infoButton.data('whatever');
+    const articleDescription = infoButton.data('description');
     const modalWindow = $(this);
     modalWindow.find('#modal-description').text(articleDescription);
   });
 
   $(window).on('load', () => {
-    const preloader = $('.preloader');
+    const preloader = $('#preloader');
     preloader.delay(1000).fadeOut('slow');
   });
 };

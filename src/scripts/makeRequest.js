@@ -7,17 +7,22 @@ export const updateArticles = (state) => {
   const { urls, rssArticles } = state;
 
   const promisesResponseList = urls.map(url => axios.get(`https://${corsProxy}/${url}`));
-  const isNewArticle = article => !rssArticles.includes(article);
+
+  const handleResponses = (response) => {
+    const isNewArticle = (article) => {
+      const hasRssItem = state.rssArticles.find(({ link }) => link === article.link);
+      return hasRssItem ? null : article;
+    };
+
+    const feed = parse(response);
+    const { articles } = feed;
+    const articlesToAdd = articles.map(isNewArticle).filter(e => e !== null);
+    rssArticles.unshift(...articlesToAdd);
+  };
 
   Promise.all(promisesResponseList)
     .then((responsesList) => {
-      responsesList.forEach((response) => {
-        const feed = parse(response);
-        const { articles } = feed;
-        const articlesToAdd = articles.filter(isNewArticle);
-
-        state.rssArticles.push(...articlesToAdd);
-      });
+      responsesList.forEach(handleResponses);
     })
     .finally(() => setTimeout(() => updateArticles(state), timeToUpdate));
 };
@@ -32,9 +37,9 @@ export const addFeed = (state, linkFromUser) => {
     .then((response) => {
       const feed = parse(response);
       const { articles } = feed;
-      newState.rssFeeds.push(feed);
+      newState.rssFeeds.unshift(feed);
       newState.urls.push(linkFromUser);
-      newState.rssArticles.push(...articles);
+      newState.rssArticles.unshift(...articles);
       newState.addFeedProcess.requestState = 'finished';
     })
     .catch((err) => {
