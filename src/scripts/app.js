@@ -3,7 +3,8 @@ import $ from 'jquery';
 import isURL from 'validator/lib/isURL';
 import watch from './watch';
 import { updateArticles, addFeed } from './makeRequest';
-import { mainConfig, localize } from './localize';
+import mainConfig from './localization/mainConfig';
+import localize from './localization';
 
 
 export default () => {

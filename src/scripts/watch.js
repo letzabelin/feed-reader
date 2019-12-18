@@ -1,6 +1,6 @@
 import { watch } from 'melanke-watchjs';
 import render from './render';
-import { localize } from './localize';
+import localize from './localization';
 
 export default (state) => {
   const input = document.querySelector('#rss-input');

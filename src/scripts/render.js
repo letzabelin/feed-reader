@@ -1,13 +1,22 @@
-import { localize } from './localize';
+import localize from './localization';
 
-const feedsBlock = document.querySelector('#rss-feeds');
 const articlesBlock = document.querySelector(' #rss-articles');
-const titlesOfFeeds = [];
 const titlesOfArticles = [];
 
+const checkTitles = (type) => {
+  const typeOfTitles = {
+    feedsTitles: [],
+    articlesTitles: [],
+  };
+
+  return typeOfTitles[type];
+};
+
 const renderFeed = ({ title, description, link }) => {
-  if (titlesOfFeeds.includes(title)) return;
-  titlesOfFeeds.push(title);
+  const feedsBlock = document.querySelector('#rss-feeds');
+
+  if (checkTitles('feedsTitles').includes(title)) return;
+  checkTitles('feeds').push(title);
 
   const templateFeedItem = `
   <div class="d-flex w-100 justify-content-between">
@@ -34,10 +43,8 @@ const renderArticle = ({ title, link, description }) => {
     <button type="button" class="btn btn-secondary ml-4 button-info" data-toggle="modal" data-target="#info-modal" data-whatever='${description}'>
       ${localize((t) => {
     const buttonsInfo = document.querySelectorAll('.button-info');
-
     buttonsInfo.forEach((btn) => {
       const buttonInfo = btn;
-
       buttonInfo.textContent = t('button.info');
     });
   })}
