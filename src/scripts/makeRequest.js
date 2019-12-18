@@ -9,14 +9,14 @@ export const updateArticles = (state) => {
   const promisesResponseList = urls.map(url => axios.get(`https://${corsProxy}/${url}`));
 
   const handleResponses = (response) => {
-    const isNewArticle = (article) => {
-      const hasRssItem = state.rssArticles.find(({ link }) => link === article.link);
-      return hasRssItem ? null : article;
+    const fillNewArticle = (article) => {
+      const isNewArticle = state.rssArticles.find(({ link }) => link === article.link);
+      return isNewArticle ? null : article;
     };
 
     const feed = parse(response);
     const { articles } = feed;
-    const articlesToAdd = articles.map(isNewArticle).filter(e => e !== null);
+    const articlesToAdd = articles.map(fillNewArticle).filter(e => e !== null);
     rssArticles.unshift(...articlesToAdd);
   };
 
