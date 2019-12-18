@@ -1,22 +1,13 @@
 import localize from './localization';
 
-const articlesBlock = document.querySelector(' #rss-articles');
+const titlesOfFeeds = [];
 const titlesOfArticles = [];
-
-const checkTitles = (type) => {
-  const typeOfTitles = {
-    feedsTitles: [],
-    articlesTitles: [],
-  };
-
-  return typeOfTitles[type];
-};
 
 const renderFeed = ({ title, description, link }) => {
   const feedsBlock = document.querySelector('#rss-feeds');
 
-  if (checkTitles('feedsTitles').includes(title)) return;
-  checkTitles('feeds').push(title);
+  if (titlesOfFeeds.includes(title)) return;
+  titlesOfFeeds.push(title);
 
   const templateFeedItem = `
   <div class="d-flex w-100 justify-content-between">
@@ -34,6 +25,8 @@ const renderFeed = ({ title, description, link }) => {
 };
 
 const renderArticle = ({ title, link, description }) => {
+  const articlesBlock = document.querySelector(' #rss-articles');
+
   if (titlesOfArticles.includes(title)) return;
   titlesOfArticles.push(title);
 
