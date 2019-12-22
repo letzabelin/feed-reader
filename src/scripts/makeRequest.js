@@ -1,28 +1,30 @@
 import axios from 'axios';
 import parse from './parse';
 
+const handleResponses = state => ({ data }) => {
+  const { rssArticles } = state;
+
+  const fillNewArticle = (article) => {
+    const isNewArticle = state.rssArticles.find(({ link }) => link === article.link);
+    return isNewArticle ? null : article;
+  };
+
+  const feed = parse(data);
+  const { articles } = feed;
+  const articlesToAdd = articles.map(fillNewArticle).filter(e => e !== null);
+  rssArticles.unshift(...articlesToAdd);
+};
+
 export const updateArticles = (state) => {
   const corsProxy = 'cors-anywhere.herokuapp.com';
   const timeToUpdate = 5000;
-  const { urls, rssArticles } = state;
+  const { urls } = state;
 
   const promisesResponseList = urls.map(url => axios.get(`https://${corsProxy}/${url}`));
 
-  const handleResponses = (response) => {
-    const fillNewArticle = (article) => {
-      const isNewArticle = state.rssArticles.find(({ link }) => link === article.link);
-      return isNewArticle ? null : article;
-    };
-
-    const feed = parse(response);
-    const { articles } = feed;
-    const articlesToAdd = articles.map(fillNewArticle).filter(e => e !== null);
-    rssArticles.unshift(...articlesToAdd);
-  };
-
   Promise.all(promisesResponseList)
     .then((responsesList) => {
-      responsesList.forEach(handleResponses);
+      responsesList.forEach(handleResponses(state));
     })
     .finally(() => setTimeout(() => updateArticles(state), timeToUpdate));
 };
@@ -34,8 +36,8 @@ export const addFeed = (state, linkFromUser) => {
   newState.addFeedProcess.requestState = 'sending';
 
   axios.get(`https://${corsProxy}/${linkFromUser}`)
-    .then((response) => {
-      const feed = parse(response);
+    .then(({ data }) => {
+      const feed = parse(data);
       const { articles } = feed;
       newState.rssFeeds.unshift(feed);
       newState.urls.push(linkFromUser);

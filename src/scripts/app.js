@@ -3,9 +3,8 @@ import $ from 'jquery';
 import isURL from 'validator/lib/isURL';
 import watch from './watch';
 import { updateArticles, addFeed } from './makeRequest';
-import mainConfig from './localization/mainConfig';
-import localize from './localization';
-
+import startLocalizationConfig from './startLocalizationConfig';
+import localize from './localize';
 
 export default () => {
   const state = {
@@ -20,7 +19,7 @@ export default () => {
 
   watch(state);
   updateArticles(state);
-  localize(mainConfig);
+  localize.then(startLocalizationConfig);
 
   const inputForURL = document.querySelector('#rss-input');
   const addFeedForm = document.querySelector('#rss-form');

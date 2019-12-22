@@ -1,6 +1,6 @@
 import { watch } from 'melanke-watchjs';
 import render from './render';
-import localize from './localization';
+import localize from './localize';
 
 export default (state) => {
   const input = document.querySelector('#rss-input');
@@ -8,22 +8,11 @@ export default (state) => {
   const hintMessage = document.querySelector('#hint-message');
 
   const selectMessage = (requestState) => {
-    const messages = {
-      filling: (t) => {
-        hintMessage.textContent = t('form.hint-message.filling');
-      },
-      sending: (t) => {
-        hintMessage.textContent = t('form.hint-message.sending');
-      },
-      finished: (t) => {
-        hintMessage.textContent = t('form.hint-message.finished');
-      },
-      failed: (t) => {
-        hintMessage.textContent = t('form.hint-message.failed');
-      },
+    const handleMessage = (t) => {
+      hintMessage.textContent = t(`form.hint-message.${requestState}`);
     };
 
-    return localize(messages[requestState]);
+    return localize.then(handleMessage);
   };
 
   watch(state, 'addFeedProcess', () => {
@@ -45,7 +34,7 @@ export default (state) => {
         input.classList.add('is-valid');
         break;
       default:
-        throw new Error('Validation state is not defined');
+        throw new Error(`Validation state ${state.addFeedProcess.validationState} is not defined`);
     }
   });
 
@@ -82,7 +71,7 @@ export default (state) => {
         input.removeAttribute('disabled');
         break;
       default:
-        throw new Error('Request state is not defined!');
+        throw new Error(`Request state ${state.addFeedProcess.requestState} is not defined!`);
     }
   });
 

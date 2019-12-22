@@ -1,4 +1,4 @@
-import localize from './localization';
+import localize from './localize';
 
 const renderFeed = (rssFeed) => {
   const feedsBlock = document.querySelector('#rss-feeds');
@@ -26,7 +26,7 @@ const renderArticle = (rssArticles) => {
     <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
       <a href=${link} class="text-dark">${title}</a>
       <button type="button" class="btn btn-secondary ml-4 button-info" data-toggle="modal" data-target="#info-modal" data-description='${description}'>
-        ${localize((t) => {
+        ${localize.then((t) => {
       const buttonsInfo = document.querySelectorAll('.button-info');
       buttonsInfo.forEach((btn) => {
         const buttonInfo = btn;
