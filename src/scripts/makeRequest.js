@@ -4,10 +4,11 @@ import parse from './parse';
 const handleResponses = state => ({ data }) => {
   const { rssArticles } = state;
 
-  const findNewArticles = (article) => {
-    const isNewArticle = state.rssArticles.find(({ link }) => link === article.link);
-    return isNewArticle ? null : article;
-  };
+  const findNewArticles = article => (
+    state.rssArticles
+      .find(({ link }) => link === article.link)
+      ? null : article
+  );
 
   const feed = parse(data);
   const { articles } = feed;
