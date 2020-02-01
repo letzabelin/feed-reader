@@ -13,8 +13,7 @@ const resources = {
 };
 
 const options = {
-  fallbackLng: 'en',
-  // debug: true,
+  fallbackLng: 'ru',
   resources,
 };
 
