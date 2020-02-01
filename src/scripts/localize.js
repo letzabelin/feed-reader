@@ -13,8 +13,9 @@ const resources = {
 };
 
 const options = {
-  fallbackLng: 'ru',
   resources,
+  fallbackLng: 'en',
+  debug: true,
 };
 
 export default i18next
