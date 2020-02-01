@@ -11,8 +11,8 @@
 * AJAX используя Axios
 * События, манипуляции с DOM
 * Валидация, DOMParser
-* [Деплой](https://surge.sh)
-* [Деплой](https://zeit.co/docs)
+* Деплой с помощью [surge](https://surge.sh)
+* Деплой с помощью [zeit](https://zeit.co/docs)
 
 Готовый [проект](http://1ocke-reader.surge.sh) через VPN
 Готовый [проект](https://dist.letzabelin.now.sh) без VPN
