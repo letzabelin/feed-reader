@@ -15,6 +15,10 @@ const resources = {
 const options = {
   fallbackLng: 'en',
   debug: true,
+  detection: {
+    order: ['querystring', 'navigator', 'htmlTag'],
+    lookupQuerystring: 'lang',
+  },
   resources,
 };
 
