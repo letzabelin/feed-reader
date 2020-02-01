@@ -9,7 +9,7 @@
     "hexlet"
   ],
   "scripts": {
-    "build": "webpack --mode=production && surge --domain 1ocke-reader.surge.sh dist",
+    "build": "webpack --mode=production",
     "start-server": "webpack-dev-server"
   },
   "repository": {
