@@ -13,9 +13,9 @@ const resources = {
 };
 
 const options = {
-  resources,
   fallbackLng: 'en',
   debug: true,
+  resources,
 };
 
 export default i18next
