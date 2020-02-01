@@ -14,6 +14,6 @@
 * Деплой с помощью [surge](https://surge.sh)
 * Деплой с помощью [zeit](https://zeit.co/docs)
 
-Готовый [проект](http://1ocke-reader.surge.sh). Доступ к сайту через VPN
+Готовый [проект](http://1ocke-reader.surge.sh). Доступ к сайту через VPN.
 
-Готовый [проект](https://dist.letzabelin.now.sh) Доступ к сайту без VPN
+Готовый [проект](https://dist.letzabelin.now.sh). Доступ к сайту без VPN.
