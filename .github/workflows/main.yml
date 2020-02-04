@@ -7,17 +7,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [13.x]
-
     steps:
     - uses: actions/checkout@v2
-    - name: run tests
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
+    - name: Run tests
     - run: make lint
       env:
         CI: true
