@@ -1,3 +1,4 @@
+[![Main workflow](https://github.com/1ocke/frontend-project-lvl3/workflows/Main%20workflow/badge.svg)](https://github.com/1ocke/frontend-project-lvl3/actions)
 [![Build Status](https://travis-ci.org/1ocke/frontend-project-lvl3.svg?branch=master)](https://travis-ci.org/1ocke/frontend-project-lvl3)
 [![Maintainability](https://api.codeclimate.com/v1/badges/039674b47aa0d90df40f/maintainability)](https://codeclimate.com/github/1ocke/frontend-project-lvl3/maintainability)
 
