@@ -8,10 +8,11 @@ const handleArticle = (item) => {
   return article;
 };
 
-export default (data) => {
+export default ({ contents }) => {
   const parser = new DOMParser();
-  const xmlDocument = parser.parseFromString(data, 'text/xml');
+  const xmlDocument = parser.parseFromString(contents, 'text/xml');
   const articles = xmlDocument.querySelectorAll('item');
+  console.log(xmlDocument);
 
   const feed = {
     title: xmlDocument.querySelector('title').textContent,

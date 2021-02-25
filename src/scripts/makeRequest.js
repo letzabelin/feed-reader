@@ -5,9 +5,7 @@ const handleResponses = state => ({ data }) => {
   const { rssArticles } = state;
 
   const findNewArticles = article => (
-    state.rssArticles
-      .find(({ link }) => link === article.link)
-      ? null : article
+    state.rssArticles.find(({ link }) => link === article.link) ? null : article
   );
 
   const feed = parse(data);
@@ -17,11 +15,11 @@ const handleResponses = state => ({ data }) => {
 };
 
 export const updateArticles = (state) => {
-  const corsProxy = 'cors-anywhere.herokuapp.com';
+  const corsProxy = 'https://hexlet-allorigins.herokuapp.com/get?url=';
   const timeToUpdate = 5000;
   const { urls } = state;
 
-  const promisesResponseList = urls.map(url => axios.get(`https://${corsProxy}/${url}`));
+  const promisesResponseList = urls.map(url => axios.get(`${corsProxy}${encodeURIComponent(url)}`));
 
   Promise.all(promisesResponseList)
     .then((responsesList) => {
@@ -31,12 +29,13 @@ export const updateArticles = (state) => {
 };
 
 export const addFeed = (state, linkFromUser) => {
-  const corsProxy = 'cors-anywhere.herokuapp.com';
+  const corsProxy = 'https://hexlet-allorigins.herokuapp.com/get?url=';
   const newState = state;
 
   newState.addFeedProcess.requestState = 'sending';
 
-  axios.get(`https://${corsProxy}/${linkFromUser}`)
+  axios
+    .get(`${corsProxy}${linkFromUser}`)
     .then(({ data }) => {
       const feed = parse(data);
       const { articles } = feed;
