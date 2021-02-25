@@ -9,7 +9,7 @@
     "hexlet"
   ],
   "scripts": {
-    "build": "webpack --mode=production && now --prod dist",
+    "build": "webpack --mode=production && vercel --prod dist",
     "start-server": "webpack-dev-server"
   },
   "repository": {
